@@ -20,15 +20,14 @@ Template.body.onRendered(function(){
   labels = []
   Temperatures.find({},{'sort': {'created_at': -1}, 'limit': 8}).forEach(function(obj){
     data.unshift({'x': obj.created_at, 'y': obj.temp})
-    labels.push(obj.created_at.getHours() + ':' + obj.created_at.getMinutes())
+    labels.unshift(obj.created_at.getHours() + ':' + obj.created_at.getMinutes())
   })
   var config = {
     type: 'line',
     data: {
       labels: labels,
-      //labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [{
-        label: 'My First dataset',
+        label: 'Temperatures',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
         data: data,
@@ -43,10 +42,6 @@ Template.body.onRendered(function(){
       },
       responsiveAnimationDuration: 0,
       responsive: true,
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart'
-      },
       tooltips: {
         mode: 'index',
         intersect: false,
