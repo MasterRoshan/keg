@@ -18,7 +18,7 @@ Template.body.onRendered(function(){
   this.autorun(function(){
   data = []
   labels = []
-  Temperatures.find({},{'sort': {'created_at': -1}, 'limit': 8}).forEach(function(obj){
+  Temperatures.find({},{'sort': {'created_at': -1}}).forEach(function(obj){
     data.unshift({'x': obj.created_at, 'y': obj.temp})
     labels.unshift(obj.created_at.getHours() + ':' + obj.created_at.getMinutes())
   })
